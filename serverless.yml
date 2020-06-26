@@ -1,0 +1,23 @@
+service: lambdajwt
+
+# app and org for use with dashboard.serverless.com
+app: lambdajwt
+org: priyabratamohantycs
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  index:
+    handler: index.handler
+    memorySize: 256
+    timeout: 30
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
